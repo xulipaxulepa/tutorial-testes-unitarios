@@ -22,9 +22,27 @@ describe('MoviesPage', () => {
     fixture = TestBed.createComponent(MoviesPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    spyOn(component, 'searchChanged')
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //verifica se a variavel searchTerm foi definida.
+  //No movies.page.ts ela é inicializada com aspas, logo ela está definida.
+  it('searchTerm should be defined', () => {
+    expect(component.searchTerm).toBeDefined();
+  })
+
+  //Este teste indica se o tipo possui um estado inicial.
+  it('type should have an initial type', () => {
+    expect(component.type).toEqual('')
+  })
+
+  //Este teste indica se a função searchChanged foi chamada com exito.
+  it('searchChanged function should be called', () => {
+    component.searchChanged()
+    expect(component.searchChanged).toHaveBeenCalled();
+  })
 });

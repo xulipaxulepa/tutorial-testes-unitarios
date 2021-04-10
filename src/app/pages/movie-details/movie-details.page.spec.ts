@@ -22,9 +22,20 @@ describe('MovieDetailsPage', () => {
     fixture = TestBed.createComponent(MovieDetailsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    spyOn(component, 'ngOnInit')
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //Testa para ver se a variavel informatio está sendo setada inicialmente como null.
+  it('should be null', () => {
+    expect(component.information).toBeNull()
+  })
+
+  //Esse teste retorna como uma falha, sabe porque? é muito interessante!
+  it('should call ngOnInit', () => {
+    expect(component.ngOnInit).toHaveBeenCalled()
+  })
 });
