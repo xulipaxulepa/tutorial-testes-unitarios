@@ -5,9 +5,11 @@ import { MovieService, SearchType } from './movie.service';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe('MovieService', () => {
-  const DadoMockado: any = require('../services/searchData.mock.json')
+  const DadoMockado: JSON = require('../services/searchData.mock.json')
+  const getDetailsMockado: JSON = require('../services/getDetails.mock.json')
 
-  let DadosTeste
+  let DadosTesteSearchData
+  let DadosTesteGetDetails
   beforeEach(() => TestBed.configureTestingModule({
     imports: [HttpClientTestingModule]
   }));
@@ -21,11 +23,22 @@ describe('MovieService', () => {
   it('test service searchData', () => {
     const service: MovieService = TestBed.get(MovieService);
     spyOn(service, 'searchData').and.callFake(() => {
-      DadosTeste = DadoMockado
+      DadosTesteSearchData = DadoMockado
     })
     service.searchData('Godzilla',SearchType.all)
     expect(service.searchData).toHaveBeenCalled()
-    expect(DadosTeste).toEqual(DadoMockado)
+    expect(DadosTesteSearchData).toEqual(DadoMockado)
+  })
+
+  //testando a API utilizando dados mockados.
+  it('test service getDetails', () => {
+    const service: MovieService = TestBed.get(MovieService);
+    spyOn(service, 'searchData').and.callFake(() => {
+      DadosTesteGetDetails = getDetailsMockado
+    })
+    service.searchData('Godzilla',SearchType.all)
+    expect(service.searchData).toHaveBeenCalled()
+    expect(DadosTesteGetDetails).toEqual(getDetailsMockado)
   })
 
 });
